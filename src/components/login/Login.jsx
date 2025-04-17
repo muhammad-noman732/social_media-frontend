@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../store/features/authSlice';
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
 
@@ -89,7 +90,7 @@ const Login = () => {
         </button>
 
         <div className="text-center text-sm text-gray-500 mt-4">
-          Don't have an account? <a href="/signup" className="text-blue-600 hover:underline">Sign up</a>
+          Don't have an account? <NavLink to="/signup" className="text-blue-600 hover:underline">Sign up</NavLink>
         </div>
       </form>
     </div>

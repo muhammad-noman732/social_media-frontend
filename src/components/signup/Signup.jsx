@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/features/authSlice';
+import { Navigate } from 'react-router-dom';
 const Signup = () => {
    
      const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Signup = () => {
       try {
         // Wait for the async signup action to complete.
         const action = await dispatch(registerUser(values));
+         Navigate('/login')
 
         // Check if the action was fulfilled using the matcher
         if (registerUser.fulfilled.match(action)) {

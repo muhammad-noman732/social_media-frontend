@@ -62,7 +62,7 @@ export const loginUser = createAsyncThunk("/auth/loginuser" ,
              })
 
 export const fetchCurrentUser = createAsyncThunk("/auth/fetchcurrentuser" , 
-         async({rejectWithValue})=>{
+         async(_,{rejectWithValue})=>{
             try {
               const token = localStorage.getItem("token");
 
@@ -112,7 +112,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.data || action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -130,7 +130,8 @@ const authSlice = createSlice({
         localStorage.setItem("token", action.payload.data.token);
         console.log('Token saved to localStorage:', localStorage.getItem("token")); // Verify it's saved
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload?.data;
+        
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -144,7 +145,9 @@ const authSlice = createSlice({
         console.log("data in fetchcurrentuser redcer" , action.payload);
         
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.data?.user || action.payload.user || action.payload;
+
+        
       })
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         state.loading = false;

@@ -4,6 +4,7 @@ import Signup from "./components/signup/Signup";
 import Routing from "./routing/Routing";
 import { useDispatch } from "react-redux";
 import { fetchCurrentUser } from "./store/features/authSlice";
+import axios from 'axios';
 
 function App() {
       const dispatch = useDispatch();      
@@ -17,9 +18,9 @@ function App() {
           console.log("No token found in localStorage");
         }
       }, []);
-  
+       
   return (
-       <div>
+       <div className="bg-gray-500">
          <Routing/>
        </div>
   );
