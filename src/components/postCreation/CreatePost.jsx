@@ -32,6 +32,7 @@ const CreatePost = () => {
         dispatch(getAllPosts()); // refetch all posts to stay updated
        }
 
+      //  image is uncontrolled so we have to make it empty using useref
        if(fileInputRef.current){
          fileInputRef.current.value= '';
        }
@@ -44,7 +45,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="bg-gray-400 text-white p-4 rounded-lg shadow-md w-full max-w-xl mx-auto mb-5 my-17">
+    <div className="bg-gray-400 text-white  p-4 rounded-lg shadow-md  max-w-xl mx-auto mb-5 my-17">
       <form onSubmit={handleSubmit} className="space-y-4">
         <textarea
           placeholder="What's on your mind?"

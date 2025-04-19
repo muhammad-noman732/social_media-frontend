@@ -136,7 +136,7 @@ const postSlice = createSlice({
           console.log("data in post creation reducer", action.payload);
           state.loading = false;
           // Add the new post to the beginning of the posts array
-          state.posts = [action.payload.data, ...state.posts];
+          state.posts = [action.payload.data , ...state.posts];
       })
         builder.addCase(createPost.rejected, (state, action) => {
           state.loading = false;
@@ -164,7 +164,7 @@ const postSlice = createSlice({
       state.currentPost = null; // for single post
      })
     builder.addCase(getPostById.fulfilled, (state, action) => {
-        console.log("data in get all post reducer" , action.payload);
+        console.log("data in get by id reducer" , action.payload?.data);
         state.loading = false;
         state.currentPost = action.payload?.data
     })

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/features/authSlice";
 import {
   FaHome,
+  FaFacebook,
   FaUsers,
   FaUser,
   FaSignOutAlt,
@@ -28,9 +29,9 @@ function Navbar() {
     <nav className="bg-white shadow-md fixed top-0 w-full z-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center h-14">
         {/* Left: Logo + Search */}
-        <div className="flex items-center space-x-3">
-          <NavLink to="/" className="text-white bg-blue-600 w-[30px] h-[30px] flex justify-center item-center rounded-2xl   text-2xl font-bold ">
-            f
+        <div className="flex items-center space-x-2 ">
+          <NavLink to="/" className=" text-blue-600 w-[30px] h-[30px] flex justify-center item-center text-3xl font-bold ">
+            <FaFacebook/>
           </NavLink>
 
           {/* Search Bar (hidden on mobile) */}

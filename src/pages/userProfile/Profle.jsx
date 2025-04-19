@@ -20,8 +20,7 @@ const Profle = () => {
       
       <button className="rounded-md py-2 px-4 bg-red-400"
        onClick={logoutHandler}>logout</button>
-       <CreatePost/>
-       <PostLists/>
+       
     </div>
   )
 }
