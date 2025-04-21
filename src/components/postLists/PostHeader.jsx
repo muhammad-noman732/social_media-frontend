@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEllipsisH, FaEdit, FaTrashAlt } from "react-icons/fa";
-import { deletePost } from "../../store/features/postSlice";
+import { deletePost , getAllPosts } from "../../store/features/postSlice";
 
 const PostHeader = ({ post }) => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -16,7 +16,10 @@ const PostHeader = ({ post }) => {
 
   const handleDelete = (postId) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      dispatch(deletePost(postId));
+      dispatch(deletePost(postId)).then(()=>{
+        dispatch(getAllPosts());
+      })
+      
     }
   };
   const isOwner = user?._id && post?.author?._id && 

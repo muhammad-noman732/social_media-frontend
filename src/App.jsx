@@ -20,7 +20,7 @@ function App() {
       }, []);
        
   return (
-       <div className="bg-gray-500">
+       <div className="bg-gray-700">
          <Routing/>
        </div>
   );

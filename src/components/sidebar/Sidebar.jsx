@@ -14,7 +14,7 @@ import SidebarItem from '../sidebarItem/SidebarItem';
 const SideBar = () => {
 //  it will show on only large screen size 
     return (
-        <div className="w-[300px]  my-20 p-4  flex flex-col gap-3 bg-white">
+        <div className="w-[300px]  my-20 p-4  flex flex-col gap-3 ">
           <div className="flex gap-3 items-center mb-4">
             <img className="w-10 h-10 rounded-full object-cover" src={profile} alt="profile" />
             <p className="text-gray-800 font-semibold">Muhammad Noman</p>

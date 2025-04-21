@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignupPage from "../pages/signup/SignupPage";
 import LoginPage from "../pages/login/LoginPage";
-import Profle from "../pages/userProfile/Profle";
+import ProfilePage from '../pages/userProfile/ProflePage'
 import Layout from "../components/layout/Layout";
 import ProtctedRoutes from "./ProtctedRoutes";
 import PublicRoutes from "./PublicRoutes";
@@ -18,7 +18,7 @@ const Routing = () => {
         {
           element: <ProtctedRoutes />,
           children: [{ path: "/", element: <Feed /> },
-            {path:'/profile' , element:<Profle/>},
+            {path:'/profile' , element:<ProfilePage/>},
             {path:`/post/:postId` , element: <SinglePost/>}
           ],
         },

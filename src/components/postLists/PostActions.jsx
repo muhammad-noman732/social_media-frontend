@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaThumbsUp, FaRegThumbsUp, FaComment, FaShare } from 'react-icons/fa';
 import { likePost, unlikePost } from '../../store/features/postLikeSlice';
 import { getAllPosts, getPostById } from '../../store/features/postSlice';
 import { useNavigate } from 'react-router-dom';
 
-const PostActions = ({ post}) => {
+
+const PostActions = ({ post , showComments , setShowComments}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -21,8 +22,8 @@ const PostActions = ({ post}) => {
 
     if (userHasLiked) {
       dispatch(unlikePost(post._id)).then(() => {
-        dispatch(getAllPosts());
-        dispatch(getPostById(post._id)); // 👈 update single post
+          dispatch(getAllPosts());
+          dispatch(getPostById(post._id)); // update single post
       });
     } else {
       dispatch(likePost(post._id)).then(() => {
@@ -72,6 +73,7 @@ const PostActions = ({ post}) => {
         onClick={(e) => {
           e.stopPropagation();
           handleViewPost(post._id);
+          setShowComments(!showComments);
         }}
       >
         <FaComment className="mr-2" /> Comment

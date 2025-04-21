@@ -4,13 +4,15 @@ import authReducer from './features/authSlice';
 import postReducer from './features/postSlice';
 import likesReducer from './features/postLikeSlice';
 import commentReducer from './features/commentsSlice'
+import userProfileReducer from './features/userProfileSlice'
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     posts: postReducer,
     likes: likesReducer  ,
-    comments: commentReducer
+    comments: commentReducer,
+    user : userProfileReducer
 
   }
 });

@@ -11,7 +11,7 @@ const PostItem = ({post}) => {
       <PostHeader post={post}/>
       <PostContent post={post}/>
       <PostStats post={post}/>
-      <PostActions post={post}  />
+      <PostActions post={post}   />
     </div>
   )
 }
