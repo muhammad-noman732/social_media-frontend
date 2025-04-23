@@ -15,10 +15,11 @@ const UserInfoContainer = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="bg-white p-4 rounded shadow">
-      <h2 className="text-xl font-bold">{profile?.userName}</h2>
-      <p className="text-gray-600">{profile?.location || 'No location provided'}</p>
-    </div>
+    <div className="text-center sm:text-left">
+    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+      {profile.userName}
+    </h2>
+  </div>
   );
 };
 

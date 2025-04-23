@@ -10,14 +10,17 @@ import {
     MdStorefront,} from 'react-icons/md';
 import profile from '../../assets/profile.png'
 import SidebarItem from '../sidebarItem/SidebarItem';
+import { useSelector } from 'react-redux';
 
 const SideBar = () => {
 //  it will show on only large screen size 
+//  get user state 
+ const {profile } = useSelector(state => state.user)
     return (
         <div className="w-[300px]  my-20 p-4  flex flex-col gap-3 ">
           <div className="flex gap-3 items-center mb-4">
-            <img className="w-10 h-10 rounded-full object-cover" src={profile} alt="profile" />
-            <p className="text-gray-800 font-semibold">Muhammad Noman</p>
+            <img className="w-10 h-10 rounded-full object-cover" src={profile.profilePicture}  />
+            <p className="text-gray-800 font-bold">{profile.userName}</p>
           </div>
           <SidebarItem icon={<FaRobot />} label="Meta AI" />
           <SidebarItem icon={<FaUserFriends />} label="Friends" />

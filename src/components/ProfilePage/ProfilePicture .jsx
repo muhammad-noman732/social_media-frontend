@@ -16,6 +16,7 @@ const ProfilePicture = () => {
 
   const handleChange = (e) => {
     const img = e.target.files[0];
+    
     if (img) {
       setPreview(URL.createObjectURL(img));
       setFile(img);
@@ -25,7 +26,7 @@ const ProfilePicture = () => {
   const handleUpload = () => {
     if (!file) return;
     const formData = new FormData();
-    formData.append("profilePicture", file);
+    formData.append("profilePicture", file); // must match with backend
     dispatch(uploadProfilePhoto(formData)).then(() => {
       setPreview(null);
       setFile(null);
@@ -39,6 +40,7 @@ const ProfilePicture = () => {
     if (file) {
       handleUpload();
     }
+    //  clean from setpreview
     return () => {
       if (preview) URL.revokeObjectURL(preview);
     };
@@ -46,20 +48,20 @@ const ProfilePicture = () => {
 
   return (
 
-    <div className="relative cursor-pointer w-36 h-36 rounded-full border-4 border-white shadow-md">
-      <img
-        src={preview || profile.profilePicture}
-        className="w-full h-full rounded-full object-cover"
-        onClick={handleImageClick}
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleChange}
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-      />
-    </div>
+    <div className="relative cursor-pointer w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-white shadow-md">
+  <img
+    src={preview || profile.profilePicture}
+    className="w-full h-full rounded-full object-cover"
+    onClick={handleImageClick}
+  />
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleChange}
+    ref={fileInputRef}
+    style={{ display: 'none' }}
+  />
+</div>
   );
 };
 

@@ -6,7 +6,7 @@ import { getAllPosts, getPostById } from '../../store/features/postSlice';
 import { useNavigate } from 'react-router-dom';
 
 
-const PostActions = ({ post }) => {
+const SinglePostAction = ({ post , showComments , setShowComments}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -35,10 +35,6 @@ const PostActions = ({ post }) => {
     }
   };
 
-   // Navigate to single post view
-   const handleViewPost = (postId) => {
-    navigate(`/post/${postId}`);
-  };
 
 
   const userHasLiked = post.likes?.some(like =>
@@ -72,7 +68,7 @@ const PostActions = ({ post }) => {
         className="flex items-center justify-center w-1/3 text-gray-600 hover:bg-gray-100 py-1 rounded-md hover:cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
-          handleViewPost(post._id);
+          setShowComments(!showComments);
         }}
       >
         <FaComment className="mr-2" /> Comment
@@ -85,4 +81,4 @@ const PostActions = ({ post }) => {
   );
 };
 
-export default PostActions;
+export default  SinglePostAction;

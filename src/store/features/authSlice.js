@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { act } from 'react';
 
 export const registerUser = createAsyncThunk("/auth/registeruser" ,
      async({userName , email , password , location } , {rejectWithValue}) =>{
@@ -70,7 +69,7 @@ export const fetchCurrentUser = createAsyncThunk("/auth/fetchcurrentuser" ,
                 method:"GET",
                 headers:{
                   "Content-type":"application/json",
-                   "Authorization": token
+                  Authorization: `Bearer ${token}`,
                 }
               })
              console.log("response in getcurrent user action" , response);

@@ -10,7 +10,7 @@ export const createPost = createAsyncThunk("/posts/createpost",
         const response = await fetch("http://localhost:3000/api/post/create", {
           method: "POST",
           headers:{
-            "Authorization": token,
+            Authorization: `Bearer ${token}`,
           },
           body: formData, 
         });
@@ -37,7 +37,7 @@ export const createPost = createAsyncThunk("/posts/createpost",
         const response = await fetch("http://localhost:3000/api/post/", {
           method: "GET",
           headers:{
-            "Authorization": token,
+            Authorization: `Bearer ${token}`,
           }
         });
         
@@ -63,7 +63,7 @@ export const getPostById  = createAsyncThunk("/posts/getpost",
       const response = await fetch(`http://localhost:3000/api/post/${postId}`, {
         method: "GET",
         headers:{
-          "Authorization": token,
+          Authorization: `Bearer ${token}`,
           "Content-Type":"Application/json"
         }
       });
@@ -90,7 +90,7 @@ export const deletePost  = createAsyncThunk("/posts/deletepost",
       const response = await fetch(`http://localhost:3000/api/post/${postId}`, {
         method: "DELETE",
         headers:{
-          "Authorization": token,
+          Authorization: `Bearer ${token}`,
           "Content-Type":"Application/json"
         }
       });
@@ -119,7 +119,7 @@ export const createComment = createAsyncThunk("/comment/createComment" ,
            method:"POST",
            headers:{
              "Content-Type":"application/json",
-             "Authorization": token
+              Authorization: `Bearer ${token}`,
            },
            body:JSON.stringify({
              text
@@ -150,7 +150,7 @@ async({newText , postId , commentId}, {rejectWithValue}) => {
         method:"PUT",
         headers:{
           "Content-Type":"application/json",
-          "Authorization": token
+           Authorization: `Bearer ${token}`,
         },
         body:JSON.stringify({
           text : newText
@@ -181,7 +181,7 @@ async({postId , commentId}, {rejectWithValue}) => {
         method:"DELETE",
         headers:{
           "Content-Type":"application/json",
-          "Authorization": token
+          Authorization: `Bearer ${token}`,
         },
         
       });
@@ -209,7 +209,7 @@ export const likeComment = createAsyncThunk("/comment/likecomment",
       const response = await fetch(`http://localhost:3000/api/post/${postId}/comments/${commentId}/like`, {
         method: "PUT",
         headers:{
-          "Authorization": token,
+          Authorization: `Bearer ${token}`,
         },
       });
       
@@ -235,7 +235,7 @@ export const unLikeComment = createAsyncThunk("/comment/unlikecomment",
       const response = await fetch(`http://localhost:3000/api/post/${postId}/comments/${commentId}/unlike`, {
         method: "DELETE",
         headers:{
-          "Authorization": token,
+          Authorization: `Bearer ${token}`,
         },
       });
       
@@ -253,7 +253,6 @@ export const unLikeComment = createAsyncThunk("/comment/unlikecomment",
   }
 );
 
-
 const postSlice = createSlice({
   name: 'posts',
   initialState:{
@@ -262,7 +261,8 @@ const postSlice = createSlice({
        loading : false,
        error:null,
        updatedCommentId : null,
-       commentLikes : {}
+       commentLikes : {},
+       userPosts:[],
        },
 
     reducers: {
@@ -397,7 +397,6 @@ builder.addCase(editComment.pending, (state, action) => {
      state.loading = true;
     state.error = null;
   })
-  
 
   //  like comment reducer 
   builder.addCase(likeComment.fulfilled, (state, action) => {
@@ -434,10 +433,6 @@ builder.addCase(editComment.pending, (state, action) => {
         state.loading = true;
         state.error = null;
      })
-     
-   
-   
-
    }
 })
 

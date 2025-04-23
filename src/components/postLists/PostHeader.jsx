@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaEllipsisH, FaEdit, FaTrashAlt } from "react-icons/fa";
-import { deletePost , getAllPosts } from "../../store/features/postSlice";
+import { deletePost , getAllPosts, getPostById } from "../../store/features/postSlice";
+import { NavLink } from "react-router-dom";
+import { getUserProfile } from "../../store/features/userProfileSlice";
+import { getLoggedinUserPosts } from "../../store/features/loggedInuser.slice";
 
 const PostHeader = ({ post }) => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -18,6 +21,8 @@ const PostHeader = ({ post }) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       dispatch(deletePost(postId)).then(()=>{
         dispatch(getAllPosts());
+        dispatch(getLoggedinUserPosts()) // for deletion on the profilepage
+    
       })
       
     }
@@ -27,23 +32,24 @@ const PostHeader = ({ post }) => {
 
   return (
     <div className="flex items-center justify-between mb-3">
-      {/* Author Info */}
-        
-      <div className="flex items-center">
-        <img
-          src={post?.author?.profilePicture || "https://via.placeholder.com/40"}
-          alt="Profile"
-          className="w-10 h-10 rounded-full object-cover mr-3"
-        />
-        <div>
-          <p className="font-semibold">
-            {post?.author?.userName || "Unknown User"}
-          </p>
-          <p className="text-xs text-gray-500">
-            {new Date(post?.createdAt).toLocaleString()}
-          </p>
-        </div>
+  {/* Author Info with Link */}
+  <div className="flex items-center">
+    <NavLink to={`/profile/${post?.author?._id}`} className="flex items-center">
+      <img
+        src={post?.author?.profilePicture || "https://via.placeholder.com/40"}
+        alt="Profile"
+        className="w-10 h-10 rounded-full object-cover mr-3"
+      />
+      <div className="leading-tight">
+        <p className="font-semibold text-sm text-gray-800 hover:underline">
+          {post?.author?.userName || "Unknown User"}
+        </p>
+        <p className="text-xs text-gray-500">
+          {new Date(post.createdAt).toLocaleString()}
+        </p>
       </div>
+    </NavLink>
+  </div>
 
       {/* Options Menu for Post Owner */}
       {isOwner && (

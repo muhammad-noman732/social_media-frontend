@@ -52,28 +52,29 @@ const CoverPhoto = () => {
   const displayImage = preview || profile?.coverPhoto 
 
   return (
-    <div className="relative h-90 bg-gray-200">
-      <img
-        src={displayImage}
-        className="w-full h-full object-cover"
+    <div className="relative h-48 sm:h-64 md:h-80 bg-gray-200">
+    <img
+      src={displayImage}
+      className="w-full h-full object-cover"
+    />
+  
+    <div className="absolute bottom-2 right-2 flex flex-col sm:flex-row gap-2 items-end sm:items-center">
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        ref={fileInputRef}
+        className="text-sm max-w-[140px]"
       />
-
-      <div className="absolute bottom-2 right-2 flex gap-2 items-center">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          ref={fileInputRef}
-          className="text-sm"
-        />
-        <button
-          onClick={CoverPhotoHandler}
-          className="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
-        >
-          {profile?.coverPhoto ? 'Update Cover Photo' : 'Add Cover Photo'}
-        </button>
-      </div>
+      <button
+        onClick={CoverPhotoHandler}
+        className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+      >
+        {profile?.coverPhoto ? 'Update Cover Photo' : 'Add Cover Photo'}
+      </button>
     </div>
+  </div>
+  
   );
 };
 

@@ -3,16 +3,19 @@ import CreatePost from '../../components/postCreation/CreatePost'
 import PostLists from '../../components/postLists/PostLists'
 import { useDispatch } from 'react-redux'
 import { getAllPosts } from '../../store/features/postSlice'
+import { getUserProfile } from '../../store/features/userProfileSlice'
 
 const Feed = () => {
         const dispatch = useDispatch();
         const token = localStorage.getItem("token");
-        
+
         useEffect(() => {
             if (token) {
               dispatch(getAllPosts());
+              dispatch(getUserProfile());
             }
           }, [dispatch]); 
+
   return (
     <div className="w-full max-w-3xl mx-auto px-4 md:px-0">
       <CreatePost/>

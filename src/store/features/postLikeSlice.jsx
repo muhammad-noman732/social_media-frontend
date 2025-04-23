@@ -7,7 +7,7 @@ export const likePost = createAsyncThunk("/posts/likepost",
         const response = await fetch(`http://localhost:3000/api/post/${postId}/like`, {
           method: "POST",
           headers:{
-            "Authorization": token,
+            Authorization: `Bearer ${token}`,
           },
         });
         
@@ -32,7 +32,7 @@ export const unlikePost = createAsyncThunk("/posts/unlikepost",
       const response = await fetch(`http://localhost:3000/api/post/${postId}/unlike`, {
         method: "DELETE",
         headers:{
-          "Authorization": token,
+           Authorization: `Bearer ${token}`,
           "Content-Type":"Application/json"
         }
       });

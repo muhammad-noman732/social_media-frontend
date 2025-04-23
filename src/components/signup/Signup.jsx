@@ -3,11 +3,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../store/features/authSlice';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 const Signup = () => {
    
      const dispatch = useDispatch();
-
+     const navigate = useNavigate()
     const validationSchema =  Yup.object({
         userName: Yup.string()
           .min(5, 'Must be at least 5 characters')
@@ -33,7 +33,7 @@ const Signup = () => {
       try {
         // Wait for the async signup action to complete.
         const action = await dispatch(registerUser(values));
-         Navigate('/login')
+         navigate('/')
 
         // Check if the action was fulfilled using the matcher
         if (registerUser.fulfilled.match(action)) {

@@ -20,6 +20,9 @@ function Navbar() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // get the current user info
+   const {profile} = useSelector(state => state.user)
+
   const logoutHandler = () => {
     dispatch(logout());
     navigate("/login");
@@ -70,10 +73,10 @@ function Navbar() {
               <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300">
                 <FaBell size={18} />
               </button>
+
               <div className="relative">
                 <img
-                  src={user.profilePicture || "https://via.placeholder.com/40"}
-                  alt="avatar"
+                  src={profile.profilePicture}
                   className="w-9 h-9 rounded-full border"
                   onClick={() => setMenuOpen(!menuOpen)}
                 />

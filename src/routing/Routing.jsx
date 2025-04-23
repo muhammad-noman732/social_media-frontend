@@ -8,6 +8,7 @@ import ProtctedRoutes from "./ProtctedRoutes";
 import PublicRoutes from "./PublicRoutes";
 import Feed from "../pages/feeds/feed";
 import SinglePost from  '../components/singlePost/SinglePost'
+import OtherUserProfile from "../pages/otherUserProfile/OtherUserProfile";
 
 const Routing = () => {
 
@@ -17,9 +18,11 @@ const Routing = () => {
       children: [
         {
           element: <ProtctedRoutes />,
-          children: [{ path: "/", element: <Feed /> },
+          children: [
+            { path: "/", element: <Feed /> },
             {path:'/profile' , element:<ProfilePage/>},
-            {path:`/post/:postId` , element: <SinglePost/>}
+            {path:`/post/:postId` , element: <SinglePost/>},
+            {path:`/profile/:userId` , element:<OtherUserProfile/>}
           ],
         },
         {
@@ -32,6 +35,7 @@ const Routing = () => {
       ],
     },
   ]);
+
   return (
     <div>
       <RouterProvider router={router} />
@@ -40,3 +44,4 @@ const Routing = () => {
 };
 
 export default Routing;
+
